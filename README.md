@@ -2,14 +2,29 @@
 This is a Magic Mirror created using a Raspberry Pi, HTML, CSS, and Javascript
 
 ### Contents
-1. [Setup](#Setup)
-2. [Installation](#Installation)
-3. [Settings](#Settings)
-4. [Attributions](#Attributions)
+1. [Setup](## Setup)
+2. [Installation](## Installation)
+3. [Settings](## Settings)
+4. [Attributions](## Attributions)
 
 ## Setup
 
+### Materials
+* Wood planks for the frame
+* [Raspberry Pi Zero W](https://www.raspberrypi.org/) (Although any Raspberry Pi would work)
+* Monitor
+* See through mirror (I used [this one](https://www.amazon.com/gp/product/B01G4MQ3WQ/ref=oh_aui_detailpage_o06_s01?ie=UTF8&psc=1))
+* Adhesives or brackets to assemble the frame
+* Mini HDMI and power cable
+* USB to Mini USB adapter
+* 2-Outlet power strip
 
+These are the steps I took to build Mirror
+### Construction
+1. Take the monitor and remove all of the plastic cover, including the bezel to expose the metal frame and electronics.
+2. Measure the height and width of the screen to determine the frame dimensions
+3. Plug in the HDMI and power cable into the back of the monitor, and then measure the depth. This lets you know the depth of the frame
+4. 
 ## Installation
 
 
