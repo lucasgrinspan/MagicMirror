@@ -43,11 +43,11 @@ These are the steps I took to build Mirror
 2. Download the code from this repo and place it into your favorite folder in the Raspberry Pi.
 3. If you want the mirror to be vertical instead of horizontal, open the terminal and type `sudo nano /boot/config.txt`. 
 ⋅⋅⋅* This will open the file used by the Raspberry Pi for the display configuration. 
-⋅⋅⋅* Add `lcd_rotate=1` or `lcd_rotate=3`, depending if you want a clockwise rotation or a counter clockwise rotation. 
+⋅⋅⋅* Add `display_rotate=1` or `display_rotate=3`, depending if you want a clockwise rotation or a counter clockwise rotation. 
 ⋅⋅⋅* On your keyboard, press Ctrl-O, then 'y', then Enter to save the file
 ⋅⋅⋅* Press Ctrl-X to quit the text editor
-4. In order to hide the cursor on the Raspberry Pi, type `sudo apt-get install unclutter`. This installs a program that hides the cursor when not in use
-5. In order to hide the Raspbian toolbar, 
+4. In order to hide the cursor on the Raspberry Pi, type `sudo apt-get install unclutter`. This installs a program that hides the cursor when not in use.
+5. In order to hide the Raspbian taskbar, right click the Taskbar, select "Panel Settings", click the "Advanced" tab, then check "Minimize panel when not in use".
 6. In order to hide the Chromium toolbar, 
 7. In order to start index.html on boot, type
 
