@@ -1,6 +1,6 @@
 # Magic Mirror
 This is a Magic Mirror created using a Raspberry Pi, HTML, CSS, and Javascript. The available modules are time, date, current weather, weather forecast, cryptocurrency tickers, stock tickers, and news headlines. 
-!{Magic Mirror](https://github.com/lucasgrinspan/MagicMirror/blob/master/Screenshot.png)
+![Magic Mirror](https://github.com/lucasgrinspan/MagicMirror/blob/master/Screenshot.png)
 ## Setup
 
 #### Materials
