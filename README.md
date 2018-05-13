@@ -1,15 +1,14 @@
 # Magic Mirror
-This is a Magic Mirror created using a Raspberry Pi, HTML, CSS, and Javascript
-
+This is a Magic Mirror created using a Raspberry Pi, HTML, CSS, and Javascript. The available modules are time, date, current weather, weather forecast, cryptocurrency tickers, stock tickers, and news headlines. 
 ### Contents
-1. [Setup](##Setup)
-2. [Installation](##Installation)
-3. [Settings](##Settings)
-4. [Attributions](##Attributions)
+1. [Setup](https://github.com/lucasgrinspan/MagicMirror#Setup)
+2. [Installation](https://github.com/lucasgrinspan/MagicMirror#Installation)
+3. [Settings](https://github.com/lucasgrinspan/MagicMirror#Settings)
+4. [Attributions](https://github.com/lucasgrinspan/MagicMirror#Attributions)
 
 ## Setup
 
-### Materials
+#### Materials
 * Wood planks for the frame
 * Molding wood
 * [Raspberry Pi Zero W](https://www.raspberrypi.org/) (Although any Raspberry Pi would work)
@@ -22,7 +21,7 @@ This is a Magic Mirror created using a Raspberry Pi, HTML, CSS, and Javascript
 * 2-Outlet power strip
 
 These are the steps I took to build Mirror
-### Construction
+#### Construction
 1. Take the monitor and remove all of the plastic cover, including the bezel to expose the metal frame and electronics.
 2. Measure the height and width of the screen to determine the frame dimensions
 3. Plug in the HDMI and power cable into the back of the monitor, and then measure the depth. This lets you know the depth of the frame
@@ -38,18 +37,24 @@ These are the steps I took to build Mirror
 13. Use tape or velcro to fasten the power strip
 14. Turn on the Raspberry Pi and the monitor, plug everything in, and make sure it works
 
-## Installation
+#### Installation
 1. Follow [these instructions](https://www.raspberrypi.org/documentation/remote-access/ssh/) to set up SSH for the Raspberry Pi. This is so that you can control the Pi without having to move the mirror. This is useful for future maintenance.
 2. Download the code from this repo and place it into your favorite folder in the Raspberry Pi.
+  * Open main.js in the code and navigate to the settings at the beginning of the file.
+  * You will have to register for API keys to recieve the information.
+  * Register at [News API](https://newsapi.org), [OpenWeatherMap](https://openweathermap.org/api), and [AlphaVantage](https://www.alphavantage.co). You don't have to register for the crypto information.
+  * Change the zip code to your current zip code to recieve local weather information.
+  * Change the birthday month and birthday day to recieve a happy birthday wish on your birthday.
+  * Configure the other settings if you'd like.
 3. If you want the mirror to be vertical instead of horizontal, open the terminal and type `sudo nano /boot/config.txt`. 
-⋅⋅⋅* This will open the file used by the Raspberry Pi for the display configuration. 
-⋅⋅⋅* Add `display_rotate=1` or `display_rotate=3`, depending if you want a clockwise rotation or a counter clockwise rotation. 
-⋅⋅⋅* On your keyboard, press Ctrl-O, then 'y', then Enter to save the file
-⋅⋅⋅* Press Ctrl-X to quit the text editor
+  * This will open the file used by the Raspberry Pi for the display configuration. 
+  * Add `display_rotate=1` or `display_rotate=3`, depending if you want a clockwise rotation or a counter clockwise rotation. 
+  * On your keyboard, press Ctrl-O, then 'y', then Enter to save the file
+  * Press Ctrl-X to quit the text editor
 4. In order to hide the cursor on the Raspberry Pi, type `sudo apt-get install unclutter`. This installs a program that hides the cursor when not in use.
 5. In order to hide the Raspbian taskbar, right click the Taskbar, select "Panel Settings", click the "Advanced" tab, then check "Minimize panel when not in use".
-6. In order to hide the Chromium toolbar, 
-7. In order to start index.html on boot, type
+6. In order to start the Chromium browser in full screen mode, in the terminal, type `chromium-browser --start-fullscreen [INDEX.HTML PATH HERE]`. To exit full screen, press F11.
+7. The screen should now display the page, with all of the toolbars and cursors hidden.
 
 Note: if you want to turn of the Raspberry Pi safely, go to the terminal or SSH into the terminal and type `sudo shutdown now`. Wait until the green LED turns off to unplug the Pi. 
 
