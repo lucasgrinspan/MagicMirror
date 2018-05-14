@@ -1,6 +1,6 @@
 # Magic Mirror
 This is a Magic Mirror created using a Raspberry Pi, HTML, CSS, and Javascript. The available modules are time, date, current weather, weather forecast, cryptocurrency tickers, stock tickers, and news headlines. 
-![Magic Mirror](https://github.com/lucasgrinspan/MagicMirror/blob/master/Screenshot.png)
+![Magic Mirror](https://github.com/lucasgrinspan/MagicMirror/blob/master/Images/Screenshot.png)
 ## Setup
 
 #### Materials
@@ -23,32 +23,36 @@ These are the steps I took to build Mirror
 4. Cut your wood planks to the appropriate length, leaving a few extra centimeters so that the planks can connect at the corners
 5. Use adhesive, brackets, or both to connect the wood at the joints.
 6. Cut the molding wood to the same length as the planks and use adhesive or screws to attach it to the front of the frame.
+This is how my frame ended up.
+![Frame](https://github.com/lucasgrinspan/MagicMirror/blob/master/Images/Frame.png)
 7. Once the frame is sturdy, check to see if the monitor fits into it.
 8. Cut the mirror to the right size to fit the frame. Use a jig saw or a dremel to cut the mirror. Leave the plastic covering on the mirror and make sure to cut quickly through the mirror so that the heat doesn't melt the plastic.
 9. Once the mirror is cut to the correct size, place it into the frame and make sure it fits.
 10. Place the monitor behind the mirror and use the brackets to fasten it into place.
 11. Use velcro or tape to place the Raspberry Pi and the cables into the frame.
 12. Connect the monitor power cable and the Raspberry Pi power cable into the power strip and place it within the frame.
-13. Use tape or velcro to fasten the power strip
-14. Turn on the Raspberry Pi and the monitor, plug everything in, and make sure it works
+13. Use tape or velcro to fasten the power strip.
+14. Turn on the Raspberry Pi and the monitor, plug everything in, and make sure it works.
+This is how my wiring ended up.
+![Wiring](https://github.com/lucasgrinspan/MagicMirror/blob/master/Images/Wiring.png)
 
 #### Installation
 1. Follow [these instructions](https://www.raspberrypi.org/documentation/remote-access/ssh/) to set up SSH for the Raspberry Pi. This is so that you can control the Pi without having to move the mirror. This is useful for future maintenance.
 2. Download the code from this repo and place it into your favorite folder in the Raspberry Pi.
-  * Open main.js in the code and navigate to the settings at the beginning of the file.
-  * You will have to register for API keys to recieve the information.
-  * Register at [News API](https://newsapi.org), [OpenWeatherMap](https://openweathermap.org/api), and [AlphaVantage](https://www.alphavantage.co). You don't have to register for the crypto information.
-  * Change the zip code to your current zip code to recieve local weather information.
-  * Change the birthday month and birthday day to recieve a happy birthday wish on your birthday.
-  * Configure the other settings if you'd like.
+     * Open main.js in the code and navigate to the settings at the beginning of the file.
+     * You will have to register for API keys to recieve the information.
+     * Register at [News API](https://newsapi.org), [OpenWeatherMap](https://openweathermap.org/api), and [AlphaVantage](https://www.alphavantage.co). You don't have to register for the crypto information.
+     * Change the zip code to your current zip code to recieve local weather information.
+     * Change the birthday month and birthday day to recieve a happy birthday wish on your birthday.
+     * Configure the other settings if you'd like.
 3. If you want the mirror to be vertical instead of horizontal, open the terminal and type `sudo nano /boot/config.txt`. 
-  * This will open the file used by the Raspberry Pi for the display configuration. 
-  * Add `display_rotate=1` or `display_rotate=3`, depending if you want a clockwise rotation or a counter clockwise rotation. 
-  * On your keyboard, press Ctrl-O, then 'y', then Enter to save the file
-  * Press Ctrl-X to quit the text editor
+     * This will open the file used by the Raspberry Pi for the display configuration. 
+     * Add `display_rotate=1` or `display_rotate=3`, depending if you want a clockwise rotation or a counter clockwise rotation. 
+     * On your keyboard, press Ctrl-O, then 'y', then Enter to save the file
+     * Press Ctrl-X to quit the text editor
 4. In order to hide the cursor on the Raspberry Pi, type `sudo apt-get install unclutter`. This installs a program that hides the cursor when not in use.
 5. In order to hide the Raspbian taskbar, right click the Taskbar, select "Panel Settings", click the "Advanced" tab, then check "Minimize panel when not in use".
-6. In order to start the Chromium browser in full screen mode, in the terminal, type `chromium-browser --start-fullscreen [INDEX.HTML PATH HERE]`. To exit full screen, press F11.
+6. In order to start the Chromium browser in full screen mode, in the terminal, type `chromium-browser --start-fullscreen [index.html PATH HERE]`. To exit full screen, press F11.
 7. The screen should now display the page, with all of the toolbars and cursors hidden.
 
 Note: if you want to turn of the Raspberry Pi safely, go to the terminal or SSH into the terminal and type `sudo shutdown now`. Wait until the green LED turns off to unplug the Pi. 
