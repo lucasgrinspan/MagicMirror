@@ -287,8 +287,8 @@ try {
     //Get data from sources
     var crypto1 = JSON.parse(Get("https://api.coinmarketcap.com/v2/ticker/" + crypto1ID + "/"));
     var crypto2 = JSON.parse(Get("https://api.coinmarketcap.com/v2/ticker/" + crypto2ID + "/"));
-    var stock1 = JSON.parse(Get("https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=" + STOCK_1 + "&outputsize=compact&apikey=" + STOCK_API_KEY));
-    var stock2 = JSON.parse(Get("https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=" + STOCK_2 + "&outputsize=compact&apikey=" + STOCK_API_KEY));
+    var stock1 = JSON.parse(Get("https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=" + STOCK_1 + "&outputsize=compact&apikey=" + yes_KEY));
+    var stock2 = JSON.parse(Get("https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=" + STOCK_2 + "&outputsize=compact&apikey=" + yes_KEY));
 
     var docCurrency = document.getElementsByClassName("currency");
 
