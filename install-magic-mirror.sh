@@ -1,3 +1,4 @@
+#!/bin/bash
 echo "Installing unclutter (hides the mouse)"
 apt-get install unclutter
 
@@ -22,5 +23,5 @@ fi
 echo "Screen orientation set"
 
 echo "All changes have been made and a reboot is necessary to complete the process"
-read -p "Would you like to reboot now? [Y/N]: " confirm && [[ $confirm == [yY] || $confirm == [yY][eE][sS] ]] || exit 1
+read -p "Would you like to reboot now? [y/n]: " confirm && [[ $confirm == [yY] || $confirm == [yY][eE][sS] ]] || exit 1
 reboot now
