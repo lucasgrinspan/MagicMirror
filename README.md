@@ -38,24 +38,25 @@ This is how my wiring ended up.
 
 #### Installation
 1. Follow [these instructions](https://www.raspberrypi.org/documentation/remote-access/ssh/) to set up SSH for the Raspberry Pi. This is so that you can control the Pi without having to move the mirror. This is useful for future maintenance.
-2. Download the code from this repo and place it into your favorite folder in the Raspberry Pi.
+2. Download this project onto your main computer or your Raspberry Pi by cloning the project (`git clone https://github.com/lucasgrinspan/MagicMirror`).
      * Open main.js in the code and navigate to the settings at the beginning of the file.
      * You will have to register for API keys to recieve the information.
      * Register at [News API](https://newsapi.org), [OpenWeatherMap](https://openweathermap.org/api), and [AlphaVantage](https://www.alphavantage.co). You don't have to register for the crypto information.
      * Change the zip code to your current zip code to recieve local weather information.
      * Change the birthday month and birthday day to recieve a happy birthday wish on your birthday.
      * Configure the other settings if you'd like.
-3. If you want the mirror to be vertical instead of horizontal, open the terminal and type `sudo nano /boot/config.txt`. 
-     * This will open the file used by the Raspberry Pi for the display configuration. 
-     * Add `display_rotate=1` or `display_rotate=3`, depending if you want a clockwise rotation or a counter clockwise rotation. 
-     * On your keyboard, press Ctrl-O, then 'y', then Enter to save the file
-     * Press Ctrl-X to quit the text editor
-4. In order to hide the cursor on the Raspberry Pi, type `sudo apt-get install unclutter`. This installs a program that hides the cursor when not in use.
-5. In order to hide the Raspbian taskbar, right click the Taskbar, select "Panel Settings", click the "Advanced" tab, then check "Minimize panel when not in use".
-6. In order to start the Chromium browser in full screen mode, in the terminal, type `chromium-browser --start-fullscreen [index.html PATH HERE]`. To exit full screen, press F11.
-7. The screen should now display the page, with all of the toolbars and cursors hidden.
+3. Once configured, transfer the files to the Raspberry Pi if you cloned the project onto your main computer. You can do this by using `scp` by `scp -r MagicMirror/ pi_user@pi_ip:~` substituting in your username and IP for the Raspberry Pi. Run this command from the directory containing the MagicMirror director. If you downloaded this project on the Raspberry Pi, you can skip this step.
+4. You can automatically configure and setup the MagicMirror by running `sudo ./install_magic_mirror` from the MagicMirror directory. If you wish to do it manually, here are the steps:
+    * Run `sudo apt-get install unclutter`. This will hide the mouse cursor when not in use.
+    * Run `mv ~/MagicMirror/startup.sh /home/pi`. This will move the script that starts the MagicMirror program into your home directory.
+    * Add the line `DISPLAY=:0 ./startup.sh` to your .bashrc file in your home directory. You can use a text editor or you can use the command `echo "DISPLAY=:0 ./startup.sh" >> .bashrc` from the home directory to add it. 
+    * Depending if you want a clockwise or counterclockwise rotation on your monitor, you will have to add either `display_rotate=1` or `display_rotate=3` to your /boot/config.txt file. Note that the line must be added at the beginning of the file. You can do this using a text editor installed on the Raspberry Pi or use the command `sudo sed -i "4i display_rotate=x" /boot/config.txt` Replace the "x" with the desired orientation.
+    * Reboot the Raspberry Pi by typing `sudo reboot now` to complete the changes. The program will start once it reboots.
+5. The program will now automatically start everytime the Raspberry Pi turns on.
 
-Note: if you want to turn of the Raspberry Pi safely, go to the terminal or SSH into the terminal and type `sudo shutdown now`. Wait until the green LED turns off to unplug the Pi. 
+## Notes
+* If you want to turn of the Raspberry Pi safely, go to the terminal or SSH into the terminal and type `sudo shutdown now`. Wait until the green LED turns off to unplug the Pi.
+* To uninstall the Magic Mirror, navigate to the MagicMirror directory and run `sudo ./uninstall_magic_mirror`. This will remove unclutter, the startup script, the modifications to the .bashrc file, the modifications to /boot/config.txt, and finally delete the folder. 
 
 ## Settings
 The settings let you customize some parts of the display and are found in lines 1-33 of main.js.
