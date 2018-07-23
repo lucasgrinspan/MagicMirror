@@ -1,0 +1,1 @@
+chromium-browser ~/MagicMirror/index.html --kiosk --incognito --no-default-browser-check --start-fullscreen

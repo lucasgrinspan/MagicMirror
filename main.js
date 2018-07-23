@@ -1,13 +1,13 @@
 //SETTINGS ===========================================
-const STOCK_API_KEY = "[PUT KEY HERE]";
-const NEWS_API_KEY = "[PUT KEY HERE]";
-const WEATHER_API_KEY = "[PUT KEY HERE]";
+const STOCK_API_KEY = "[PUT_KEY_HERE]";
+const NEWS_API_KEY = "[PUT_KEY_HERE]";
+const WEATHER_API_KEY = "[PUT_KEY_HERE]";
 
 const ZIP_CODE = "12345";
 
 //User's birthday month and day
-const BIRTHDAY_MONTH = 1;
-const BIRTHDAY_DAY = 1;
+const BIRTHDAY_MONTH = 3;
+const BIRTHDAY_DAY = 6;
 
 //The thresholds determine at what temperature the mirror warns you of weather
 //For example: if the weather is below TEMP_LOW_THRESHOLD, then the mirror
@@ -26,9 +26,9 @@ const STOCK_2 = "SPY";
 //The first option determines the number of top headlines from all news sources
 //The second option determines the number of headlines from all news sources from a
 //specific category, which can be set by the third option
-const NUMBER_OF_TOP_HEADLINES = 2;
-const NUMBER_OF_SECOND_CATEGORY_HEADLINES = 2;
-const SECOND_CATEGORY = "business";
+const NUMBER_OF_TOP_HEADLINES = 4;
+const NUMBER_OF_SECOND_CATEGORY_HEADLINES = 0;
+const SECOND_CATEGORY = "science";
 
 //SETTINGS END ========================================
 
@@ -40,6 +40,8 @@ function Get(url){
     return Httpreq.responseText;          
 }
 
+//Main function
+function main() {
 //Display date =======================================
 //Setup dates for various modules
 var date = new Date();
@@ -93,6 +95,12 @@ if (month == 11 && day == 25) {
     docGreeting.innerHTML = "Happy Birthday!"
 }
 try {
+    try {
+        var weatherDivider = document.getElementById("weather-divider");
+        weatherDivider.parentNode.removeChild(weatherDivider);
+    } catch (e) {
+        //ignore
+    }
     //Display weather =========================================
     var weatherJSON = JSON.parse(Get("https://api.openweathermap.org/data/2.5/weather?zip=" + ZIP_CODE + ",us&units=imperial&APPID=" + WEATHER_API_KEY));
     
@@ -100,7 +108,7 @@ try {
     var forecastJSON = JSON.parse(Get("https://api.openweathermap.org/data/2.5/forecast?zip=" + ZIP_CODE + ",us&units=imperial&APPID=" + WEATHER_API_KEY));
     
     //Create divider for the weather module
-    document.getElementById("weather").innerHTML = "<hr class='divider'>" + document.getElementById("weather").innerHTML;
+    document.getElementById("weather").innerHTML = "<hr id='weather-divider' class='divider'>" + document.getElementById("weather").innerHTML;
     
     //Set up dates for forecast events
     var todayString = date.toDateString();
@@ -111,11 +119,8 @@ try {
     //Set up weather variables for forecast
     var rainForecastsToday = 0;
     var forecastsToday = 0;
-    var tomorrowConditions = [];
     var tomorrowCondID = [];
-    var overmorrowConditions = [];
     var overmorrowCondID = [];
-    var overovermorrowConditions = [];
     var overovermorrowCondID = [];
     var lowOfDay = 1000;
     var highOfDay = 0;
@@ -251,13 +256,13 @@ try {
     //Display weather warning
     var docWarning = document.getElementById("weather-warning");
     if (lowOfDay < TEMP_LOW_THRESHOLD) {
-        docWarning.innerHTML = "The low today will be around " + lowOfDay + "°. Remember a jacket!";
+        docWarning.innerHTML = "The low today will be around " + lowOfDay + "°. Take a jacket!";
     }
     if (highOfDay > TEMP_HIGH_THRESHOLD) {
         docWarning.innerHTML = "It's gonna reach " + highOfDay + "°. Take shorts!"
     }
     if (rainSet) {
-        docWarning.innerHTML = "Remember your umbrella, it'll rain around " + String(timeOfRain) + ":00";
+        docWarning.innerHTML = "Don't forget your umbrella, it'll rain around " + String(timeOfRain) + ":00";
     }
 
     //Display tickers =======================================
@@ -287,15 +292,25 @@ try {
     //Get data from sources
     var crypto1 = JSON.parse(Get("https://api.coinmarketcap.com/v2/ticker/" + crypto1ID + "/"));
     var crypto2 = JSON.parse(Get("https://api.coinmarketcap.com/v2/ticker/" + crypto2ID + "/"));
-    var stock1 = JSON.parse(Get("https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=" + STOCK_1 + "&outputsize=compact&apikey=" + yes_KEY));
-    var stock2 = JSON.parse(Get("https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=" + STOCK_2 + "&outputsize=compact&apikey=" + yes_KEY));
+    var stock1 = JSON.parse(Get("https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=" + STOCK_1 + "&outputsize=compact&apikey=" + STOCK_API_KEY));
+    var stock2 = JSON.parse(Get("https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=" + STOCK_2 + "&outputsize=compact&apikey=" + STOCK_API_KEY));
 
     var docCurrency = document.getElementsByClassName("currency");
 
     //Setup timestamps for the stock data
+    if (date.getDay() == 0) {
+        date.setDate(date.getDate() - 2);
+        yesterday.setDate(yesterday.getDate() - 3);
+    } else if (date.getDay() == 6) {
+        date.setDate(date.getDate() - 1)
+        yesterday.setDate(yesterday.getDate() - 2);
+}
+
     var timestampDay = String(date.getFullYear()) + "-" + ((String(date.getMonth().length) == 2) ? (date.getMonth() + 1) : ("0" + (date.getMonth() + 1))) + "-" + ((String(date.getDate()).length == 2) ? (date.getDate()) : ("0" + (date.getDate())));
     var timestampYesterday = String(yesterday.getFullYear()) + "-" + ((String(yesterday.getMonth()).length == 2) ? (yesterday.getMonth() + 1) : ("0" + (yesterday.getMonth() + 1))) + "-" + ((String(yesterday.getDate()).length == 2) ? (yesterday.getDate()) : ("0" + (yesterday.getDate())));
     var timestampOverYesterday = String(overYesterday.getFullYear()) + "-" + ((String(overYesterday.getMonth()).length == 2) ? (overYesterday.getMonth() + 1) : ("0" + (overYesterday.getMonth() + 1))) + "-" + ((String(overYesterday.getDate()).length == 2) ? (overYesterday.getDate()) : ("0" + (overYesterday.getDate())));
+
+
 
     tickers = document.getElementsByClassName("ticker");
     prices = document.getElementsByClassName("price");
@@ -367,3 +382,8 @@ try {
     //Determine if network error occurred
     document.getElementById("error-text").innerHTML = "Connection lost";
 }
+}
+
+//  Run every minute
+main();
+setInterval(main, 60000);
